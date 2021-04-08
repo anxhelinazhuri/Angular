@@ -2,19 +2,41 @@
   {
     "Id":1,
     "Type":"House",
+    "SellRent": 1,
     "Name":"21 dhjetori ",
-    "Price":12000
+    "Price":12000,
+    "Image":"prop-1"
   },
   {
     "Id":2,
     "Type":"House",
+    "SellRent": 2,
     "Name":"Qender ",
-    "Price":12000
+    "Price":12000,
+    "Image":"prop-2"
   },
   {
     "Id":3,
     "Type":"House",
+    "SellRent": 1,
     "Name":"Komuna e parisit",
-    "Price":12000
+    "Price":12000,
+    "Image":"prop-3"
+  },
+  {
+    "Id":4,
+    "Type":"House",
+    "SellRent": 1,
+    "Name":"Laprak",
+    "Price":14000,
+    "Image":"prop-4"
+  },
+  {
+    "Id":5,
+    "Type":"House",
+    "SellRent": 2,
+    "Name":"Treni",
+    "Price":15900
   }
+
 ]
