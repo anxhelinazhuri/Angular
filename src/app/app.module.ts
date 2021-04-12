@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import { AppComponent } from './app.component';
 import { Routes, RouterModule} from '@angular/router';
@@ -18,8 +19,8 @@ import { UserRegisterComponent } from './user/user-login/user-register/user-regi
 import {UserServiceService} from './services/user-service.service';
 import {AlertifyService} from './services/alertify.service';
 import {AuthService} from './services/auth.service';
-
-
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 const  appRoutes: Routes = [
   { path: '', component: PropertyListComponent },
@@ -49,7 +50,10 @@ const  appRoutes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    TabsModule.forRoot(),
+    BsDatepickerModule.forRoot(),
+    ButtonsModule.forRoot()
   ],
   providers: [
     HousingService,
