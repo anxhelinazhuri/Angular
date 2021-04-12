@@ -17,7 +17,8 @@ export class HousingService {
         const propertiesArray: Array<IProperty> = [];
         for (const id in data)
         {
-          if (data.hasOwnProperty(id) && data[id].SellRent === SellRent){
+          if (data.hasOwnProperty(id) && data[id].SellRent === SellRent
+          ){
             propertiesArray.push(data[id]);
           }
 
