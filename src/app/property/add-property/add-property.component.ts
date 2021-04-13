@@ -3,7 +3,8 @@ import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import {TabsetComponent, TabsModule} from 'ngx-bootstrap/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {IProperty} from '../IProperty.interface';
+import {IPropertyBase} from '../../model/ipropertybase';
+
 @Component({
   selector: 'app-add-property',
   templateUrl: './add-property.component.html',
@@ -14,12 +15,17 @@ export class AddPropertyComponent implements OnInit {
 @ViewChild('formTabs') formTabs: TabsetComponent;
 propertyTypes: Array<string> = ['House', 'Apartment', 'Duplex'];
 furnishTypes: Array<string> = ['Fully', 'Semi', 'Unfurnished'];
-propertyView: IProperty = {
+propertyView: IPropertyBase = {
   Id: null,
   Name: '',
   Price: null,
   SellRent: null,
-  Type: null
+  PType: null,
+  FType: null,
+  BHK: null,
+  BuiltArea: null,
+  City: null,
+  RTM: null
 };
   constructor(private router: Router) { }
 
