@@ -8,7 +8,7 @@
           <form  (ngSubmit)='onSubmit()' [formGroup]="addPropertyForm" >
             <div class="tab-panel">
               <tabset class="member-tabset" #formTabs>
-                <tab  heading="Basic Info" id="tab1" >
+                <tab  heading="Basic Info" id="tab1"  formGroupName="BasicInfo">
                   <div class="form-group col-12">
                          <p> I want to </p>
                             <div class="btn-group" btnRadioGroup  formControlName="SellRent" >
@@ -68,10 +68,10 @@
                     <input type="text" class="form-control" [(ngModel)]="propertyView.City"  [ngModelOptions]="{standalone: true}"  >
                   </div>
             <div class="form-group col-12">
-              <button  type="button" class="btn btn-primary btn-block col-12" (click)="selectTab(1)" >Next</button>
+              <button  type="button"  [disabled]="BasicInfo.invalid"  class="btn btn-primary btn-block col-12" (click)="selectTab(1)" >Next</button>
              </div>
                 </tab>
-                <tab heading="Pricing and Area">
+                <tab heading="Pricing and Area" formGroupName="PriceInfo">
                   <div class="form-group col-12">
                     <label>Price (in USD)</label>
                     <input type="text" class="form-control"  [ngModelOptions]="{standalone: true}"   [(ngModel)]="propertyView.Price" >

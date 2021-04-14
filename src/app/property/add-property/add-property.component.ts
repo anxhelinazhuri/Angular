@@ -40,20 +40,31 @@ propertyView: IPropertyBase = {
   // tslint:disable-next-line:typedef
   CreateAddPropertyForm(){
     this.addPropertyForm = this.fb.group({
-      SellRent: [null, Validators.required],
-      PType: [null, Validators.required],
-      Name: [null, Validators.required],
-      Price: [null, Validators.required],
-      BuiltArea: [null, Validators.required]
+      BasicInfo: this.fb.group({
+        SellRent: [null, Validators.required],
+        PType: [null, Validators.required],
+        Name: [null, Validators.required]
+      }),
+      PriceInfo: this.fb.group({
+        Price: [null, Validators.required],
+        BuiltArea: [null, Validators.required]})
     });
   }
+  // ---------------------
+  /// Getter methods
+  // --------------------------
+  // tslint:disable-next-line:typedef
+  get BasicInfo(){
+    return this.addPropertyForm.controls.BasicInfo as FormGroup;
+  }
+
   // tslint:disable-next-line:typedef
   onBack(){ this.router.navigate(['/']); }
 
   // tslint:disable-next-line:typedef
   onSubmit( ){
     console.log('Congrats, Form Submitted');
-    console.log('SellRent=' + this.addPropertyForm.value.SellRent);
+    console.log('SellRent=' + this.addPropertyForm.value.BasicInfo.SellRent);
     console.log(this.addPropertyForm);
   }
 
