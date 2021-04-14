@@ -37,6 +37,7 @@ propertyView: IPropertyBase = {
   // tslint:disable-next-line:typedef
   onSubmit(Form: NgForm){
     console.log('Congrats, Form Submitted');
+    console.log('SellRent=' + this.addPropertyForm.value.BasicInfo.SellRent);
     console.log(this.addPropertyForm);
   }
 
