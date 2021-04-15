@@ -31,26 +31,34 @@
                   <div class="form-group col-12">
                     <p>Property Type</p>
                     <div class="btn-group" btnRadioGroup
-                         [(ngModel)]="propertyView.PType"
-                         [ngModelOptions]="{standalone: true}"           >
+                         formControlName='PType'
+                         [(ngModel)]="propertyView.PType">
                       <label
                         *ngFor="let ptype of propertyTypes"
-                        class="btn btn-outline-primary me-2"
+                        class="btn btn-outline-primary mr-2"
                         [btnRadio]="ptype" tabindex="0" role="button"
-                        name="PropType" >{{ptype}}
+                        name="PropType">{{ptype}}
                       </label>
+                    </div>
+                    <div class="error-block" *ngIf="PType.invalid && nextClicked">
+                      Please select property type
                     </div>
                   </div>
                   <div class="form-group col-12">
                     <p>Furnishing Type</p>
                     <div class="btn-group" btnRadioGroup
-                    [(ngModel)]="propertyView.FType"
-                         [ngModelOptions]="{standalone: true}"
-                    >
+                         formControlName="FType"
+                         [(ngModel)]="propertyView.FType">
                       <label
                         *ngFor="let ftype of furnishTypes"
-                        class="btn btn-outline-primary me-2"
-                        [btnRadio]="ftype" tabindex="0" role="button" name="FurnishType">{{ftype}}</label>
+                        class="btn btn-outline-primary mr-2"
+                        [btnRadio]="ftype" tabindex="0" role="button"
+                        name="FurnishType">
+                        {{ftype}}
+                      </label>
+                    </div>
+                    <div class="error-block" *ngIf="FType.invalid && nextClicked">
+                      Please select furnishing type
                     </div>
                   </div>
                   <div class="form-group col-12">
@@ -62,14 +70,22 @@
                            minlength="5"
                            [(ngModel)]="propertyView.Name"
                            >
-
+                    <div class="error-block"
+                         *ngIf="Name.invalid && (nextClicked || Name.touched)">
+                      Please select building, society or project name
+                    </div>
                   </div>
                   <div class="form-group col-12">
                     <label>City</label>
                     <input type="text" class="form-control" [(ngModel)]="propertyView.City"  [ngModelOptions]="{standalone: true}"  >
+                    <div class="error-block"
+                         *ngIf="City.invalid && (nextClicked || City.touched)">
+                      Please select city
+                    </div>
                   </div>
             <div class="form-group col-12">
-              <button  type="button"    class="btn btn-primary btn-block col-12" (click)="selectTab(1, BasicInfo.valid)" >Next</button>
+              <button  type="button"    class="btn btn-primary btn-block col-12"
+                       (click)="selectTab(1, BasicInfo.valid)" >Next</button>
              </div>
                 </tab>
                 <tab heading="Pricing and Area" formGroupName="PriceInfo">
@@ -107,14 +123,14 @@
 
                   <div class="form-group col-12">
                     <button type="button" class="btn btn-primary btn-block col-12"
-                            (click)="selectTab(2,null)">Next</button>
+                            (click)="selectTab(2, PriceInfo.valid)">Next</button>
 
                     <button type="button" class="btn btn-primary btn-block col-12"
-                            (click)="selectTab(0, null)">Back</button>
+                            (click)="selectTab(0, PriceInfo.valid)">Back</button>
                   </div>
                 </tab>
 
-                <tab heading="Address">
+                <tab heading="Address" formGroupName="AddressInfo">
 
                   <div class="form-group col-12">
                     <label>Floor</label>
@@ -138,13 +154,13 @@
 
                   <div class="form-group col-12">
                     <button type="button" class="btn btn-primary btn-block col-12"
-                            (click)="selectTab(3, null)">Next</button>
+                            (click)="selectTab(3, AddressInfo.valid)">Next</button>
 
                     <button type="button" class="btn btn-primary btn-block col-12"
-                            (click)="selectTab(1, null)">Back</button>
+                            (click)="selectTab(1, AddressInfo.valid)">Back</button>
                   </div>
                 </tab>
-                <tab heading="Other Details">
+                <tab heading="Other Details" formGroupName="OtherInfo">
                   <div class="form-group col-12">
                     <p>Ready to Move</p>
                     <div class="btn-group" btnRadioGroup>
@@ -200,10 +216,10 @@
 
                   <div class="form-group col-12">
                     <button type="button" class="btn btn-primary btn-block col-12 m-2"
-                            (click)="selectTab(4,null)">Next</button>
+                            (click)="selectTab(4, OtherInfo.valid)">Next</button>
 
                     <button type="button" class="btn btn-primary btn-block col-12 m-2"
-                            (click)="selectTab(2, null)">Back</button>
+                            (click)="selectTab(2, OtherInfo.valid)">Back</button>
                   </div>
                 </tab>
                 <tab heading="Photos">
@@ -215,7 +231,7 @@
                   </div>
                   <div class="form-group col-12">
                     <button type="button" class="btn btn-primary btn-block col-12 m-2"
-                            (click)="selectTab(3, null)">Back</button>
+                            (click)="selectTab(3,true)">Back</button>
                     <button type="reset" class="btn btn-primary btn-block col-12 m-2">Cancel</button>
                     <button type="submit" class="btn btn-primary btn-block col-12 m-2">Save</button>
                   </div>
