@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
-import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 import {TabsetComponent, TabsModule} from 'ngx-bootstrap/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {IPropertyBase} from '../../model/ipropertybase';
@@ -15,7 +15,7 @@ export class AddPropertyComponent implements OnInit {
 @ViewChild('formTabs') formTabs: TabsetComponent;
 
 addPropertyForm: FormGroup;
-
+nextClicked: boolean;
 propertyTypes: Array<string> = ['House', 'Apartment', 'Duplex'];
 furnishTypes: Array<string> = ['Fully', 'Semi', 'Unfurnished'];
 propertyView: IPropertyBase = {
@@ -57,6 +57,16 @@ propertyView: IPropertyBase = {
   get BasicInfo(){
     return this.addPropertyForm.controls.BasicInfo as FormGroup;
   }
+  // tslint:disable-next-line:typedef
+  get SellRent(){
+    return this.BasicInfo.controls.SellRent as FormControl;
+  }
+  get PriceInfo(){
+    return this.addPropertyForm.controls.PriceInfo as FormGroup;
+  }
+  get Price(){
+    return this.PriceInfo.controls.Price as FormControl;
+  }
 
   // tslint:disable-next-line:typedef
   onBack(){ this.router.navigate(['/']); }
@@ -69,7 +79,10 @@ propertyView: IPropertyBase = {
   }
 
   // tslint:disable-next-line:typedef
-  selectTab(tabId: number) {
-    this.formTabs.tabs[tabId].active = true;
+  selectTab(NextTabId: number, IsCurrentTabValid: boolean) {
+    this.nextClicked = true;
+    if (IsCurrentTabValid){
+    this.formTabs.tabs[NextTabId].active = true;
+    }
   }
 }

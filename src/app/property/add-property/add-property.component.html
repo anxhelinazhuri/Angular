@@ -15,6 +15,7 @@
                               <label class="btn btn-outline-primary me-2" btnRadio=1 role="button" name="SellRent" >Sell</label>
                               <label class="btn btn-outline-primary " btnRadio=2 role="button" name="SellRent">Rent</label>
                             </div>
+                    <div class="error-block" *ngIf="SellRent.invalid && nextClicked"> Please select Sell or Rent</div>
                   </div>
                   <div class="form-group col-12">
                     <p>BHK</p>
@@ -68,13 +69,16 @@
                     <input type="text" class="form-control" [(ngModel)]="propertyView.City"  [ngModelOptions]="{standalone: true}"  >
                   </div>
             <div class="form-group col-12">
-              <button  type="button"  [disabled]="BasicInfo.invalid"  class="btn btn-primary btn-block col-12" (click)="selectTab(1)" >Next</button>
+              <button  type="button"    class="btn btn-primary btn-block col-12" (click)="selectTab(1, BasicInfo.valid)" >Next</button>
              </div>
                 </tab>
                 <tab heading="Pricing and Area" formGroupName="PriceInfo">
                   <div class="form-group col-12">
                     <label>Price (in USD)</label>
                     <input type="text" class="form-control"  [ngModelOptions]="{standalone: true}"   [(ngModel)]="propertyView.Price" >
+                  </div>
+                  <div class="error-block" *ngIf="Price.invalid && (nextClicked || Price.touched)">
+                    Please, select Price.
                   </div>
 
                   <div class="form-group col-12">
@@ -99,10 +103,10 @@
 
                   <div class="form-group col-12">
                     <button type="button" class="btn btn-primary btn-block col-12"
-                            (click)="selectTab(2)">Next</button>
+                            (click)="selectTab(2,null)">Next</button>
 
                     <button type="button" class="btn btn-primary btn-block col-12"
-                            (click)="selectTab(0)">Back</button>
+                            (click)="selectTab(0, null)">Back</button>
                   </div>
                 </tab>
 
@@ -130,10 +134,10 @@
 
                   <div class="form-group col-12">
                     <button type="button" class="btn btn-primary btn-block col-12"
-                            (click)="selectTab(3)">Next</button>
+                            (click)="selectTab(3, null)">Next</button>
 
                     <button type="button" class="btn btn-primary btn-block col-12"
-                            (click)="selectTab(1)">Back</button>
+                            (click)="selectTab(1, null)">Back</button>
                   </div>
                 </tab>
                 <tab heading="Other Details">
@@ -192,10 +196,10 @@
 
                   <div class="form-group col-12">
                     <button type="button" class="btn btn-primary btn-block col-12 m-2"
-                            (click)="selectTab(4)">Next</button>
+                            (click)="selectTab(4,null)">Next</button>
 
                     <button type="button" class="btn btn-primary btn-block col-12 m-2"
-                            (click)="selectTab(2)">Back</button>
+                            (click)="selectTab(2, null)">Back</button>
                   </div>
                 </tab>
                 <tab heading="Photos">
@@ -207,7 +211,7 @@
                   </div>
                   <div class="form-group col-12">
                     <button type="button" class="btn btn-primary btn-block col-12 m-2"
-                            (click)="selectTab(3)">Back</button>
+                            (click)="selectTab(3, null)">Back</button>
                     <button type="reset" class="btn btn-primary btn-block col-12 m-2">Cancel</button>
                     <button type="submit" class="btn btn-primary btn-block col-12 m-2">Save</button>
                   </div>
