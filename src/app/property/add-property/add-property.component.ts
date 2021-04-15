@@ -33,7 +33,7 @@ propertyView: IPropertyBase = {
   FType: null,
   BHK: null,
   BuiltArea: null,
-  City: null,
+  City: '',
   RTM: null
 };
   constructor(private fb: FormBuilder, private router: Router, private  housingService: HousingService) { }
