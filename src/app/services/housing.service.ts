@@ -12,6 +12,12 @@ export class HousingService {
 
   constructor(private http: HttpClient ) {}
 
+
+  getAllCities(): Observable<string[]>{
+    return this.http.get<string[]>('http://localhost:16188/api/city');
+  }
+
+
   getAllProperties(SellRent: number): Observable<IPropertyBase[]>{
     return   this.http.get('data/properties.json').pipe(
       map(data => {
@@ -30,7 +36,7 @@ export class HousingService {
   }
 
   addProperty(property: Property){
-    localStorage.setItem('newProp', (JSON.stringify(property)));
+    localStorage.setItem('newProp', JSON.stringify(property));
 
   }
 }

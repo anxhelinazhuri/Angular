@@ -22,6 +22,8 @@ property = new Property();
 
 propertyTypes: Array<string> = ['House', 'Apartment', 'Duplex'];
 furnishTypes: Array<string> = ['Fully', 'Semi', 'Unfurnished'];
+cityList: string[];
+
 propertyView: IPropertyBase = {
   Id: null,
   Name: '',
@@ -39,6 +41,10 @@ propertyView: IPropertyBase = {
   // tslint:disable-next-line:typedef
   ngOnInit() {
     this.CreateAddPropertyForm();
+    this.housingService.getAllCities().subscribe(data => {
+      this.cityList = data;
+      console.log(data);
+    });
   }
 
   // tslint:disable-next-line:typedef
