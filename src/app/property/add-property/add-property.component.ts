@@ -41,9 +41,11 @@ propertyView: IPropertyBase = {
   CreateAddPropertyForm(){
     this.addPropertyForm = this.fb.group({
       BasicInfo: this.fb.group({
-        SellRent: [null, Validators.required],
+        SellRent: [1, Validators.required],
         PType: [null, Validators.required],
-        Name: [null, Validators.required]
+        FType: [null, Validators.required],
+        Name: [null, Validators.required],
+        City: [null, Validators.required]
       }),
       PriceInfo: this.fb.group({
         Price: [null, Validators.required],
@@ -73,6 +75,15 @@ propertyView: IPropertyBase = {
 
   // tslint:disable-next-line:typedef
   onSubmit( ){
+    this.nextClicked = true;
+    if (this.BasicInfo.invalid){
+      this.formTabs.tabs[0].active = true;
+      return;
+    }
+    if (this.PriceInfo.invalid){
+      this.formTabs.tabs[1].active = true;
+      return;
+    }
     console.log('Congrats, Form Submitted');
     console.log('SellRent=' + this.addPropertyForm.value.BasicInfo.SellRent);
     console.log(this.addPropertyForm);
